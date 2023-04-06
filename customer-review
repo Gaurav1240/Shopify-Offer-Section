@@ -1,4 +1,3 @@
-
 <div class="uk-slider-container-offset" uk-slider>
 
     <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
@@ -11,10 +10,10 @@
     <img class="uk-border-circle" width="40" height="40" {{ block.settings.image | img_url: '40x40', scale: 2 | img_tag: block.settings.image.alt }}
             </div>
             <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
+                <h3 class="uk-card-title uk-margin-remove-bottom">{{ block.settings.title }}</h3>
                 <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
             </div>
-    <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>{{ block.settings.review }} </p>
 </div>
           </li>
       {%  endfor %}
@@ -31,14 +30,6 @@
     <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
 
 </div>
-
-
-
-      
-
-
-
-
 
 
 {% schema %}
@@ -69,6 +60,12 @@
             "id":"review",
             "label": "Write Review",
             "default": "Good Service"
+          },
+          {
+            "type":"text",
+            "id":"title",
+            "label": "Customer Name",
+            "default": "Gaurav"
           }
         ]
       }
@@ -89,4 +86,3 @@
   ]
 }
 {% endschema %}
-
