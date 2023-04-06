@@ -1,0 +1,195 @@
+<style>
+.offer{
+    font-size:14px ;
+    font-weight:bold ;
+    color: green;
+    text-align: center;
+    margin: 5px 5px auto;
+
+}
+.disc{
+    font-size:14px ;
+    color: red;
+    text-align: center;
+    
+}
+.hc-action-btn {
+    width: 186px;
+    height: 34px;
+    border-radius: 3px;
+    background-color: #cd3232;
+    margin: auto;
+    line-height: 34px;
+    font-size: 12px;
+    font-weight: bold;
+    right: 0px;
+    left: 0;
+    bottom: 20px;
+    position: absolute;
+    letter-spacing: 0.02px;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 2px solid #cd3232;
+}
+
+.hc-store-card {
+    display:inline-block;
+    width: 270px;
+    height: 264px;
+    border-radius: 3px;
+    border: solid 1px #d9e0e2;
+    background-color: #ffffff;
+    position: relative; 
+}
+
+.home-main-cmp .block-content {
+    margin-top: 25px;
+    text-align: center;
+    position: relative;
+}
+.generic-cd-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.content-wrapper {
+
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1170px;
+}
+.block-heading {
+    font-family: HelveticaNeue;
+    font-size: 20px;
+    font-weight: bold;
+    color: #322f2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home-main-cmp {
+    margin-top: 50px;
+}
+.generic-cd-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+</style>
+
+
+<div class="slider-mobile-gutter page-width page-width-desktop">
+
+{% comment %}
+  <div class="uk-section">
+    <div class="row">
+      <div col p-3>
+          {%- for block in section.blocks -%} 
+         {%- if block.settings.image != blank -%}
+            {{ block.settings.image | img_url: '135x135', scale: 2 | img_tag: block.settings.image.alt }}
+          {%- else -%}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+             {% endfor %}
+      </div>
+        </div>
+          </div>
+{% endcomment %}
+
+    <div class="uk-section">
+        <h3 class="uk-heading-line uk-text-center block-heading"> {{ section.settings.title }}</h3>
+      <hr class="uk-divider-icon">
+     {%- for block in section.blocks -%} 
+       <div class="hc-store-card uk-width-auto">
+          <div class="disc uk-position-large uk-position-top-center">{{ block.settings.disc }} </div>
+          <div class="uk-width-auto uk-position-center">
+            <img class="uk-border"  width="100" height="100"  
+            {{ block.settings.image | img_url: '100x100', scale: 2 | img_tag: block.settings.image.alt }}
+            </div>
+            <div class="offer ">{{ block.settings.offer }}</div>
+            <div id="coupon" class="hc-action-btn">SHOW COUPON CODE</div>
+
+      </div>
+
+      {% endfor %}
+    </div>
+      
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Cashback-store",
+  "class": "index-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Logo list"
+    }
+   
+  ],
+  "blocks": [
+    {
+      "type": "logo_image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional"
+        },
+        {
+          "type": "text",
+          "id": "disc",
+          "label": "Coupon details",
+          "default": "Upto 10% Discount"
+       },
+       {
+         "type": "text",
+         "id": "offer",
+         "label": "Offer Heading",
+         "default": "Flat 33% CD Cashback"
+       }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cashback Store",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+
+          "type": "logo_image"
+        }
+       
+      ]
+    }
+  ]
+}
+{% endschema %}chas
