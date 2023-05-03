@@ -1,0 +1,191 @@
+{%- assign offer_url = section.settings.url -%}
+
+
+
+<div onclick="redirectToURL()" class="mobile-only">
+
+  <p class="uk-text-center discount"><b>{{ section.settings.heading }}</b></p>
+
+  <p  class="uk-text-center" id="countdown"><b>00:60:00</b></p>
+
+  <button class="uk-align-center btntxt"><a style="color:#fff;" href="{{ section.settings.url }}">
+
+  <b>{{ section.settings.button }}</b></a></button>
+
+</div>
+
+  
+
+	
+
+
+
+{% schema %}
+
+  {
+
+    "name": "Rich text",
+
+    "tag": "section",
+
+    "settings": [
+
+      {
+
+        "type": "text",
+
+         "id": "heading",
+
+         "label": "Discount Heading",
+
+         "default":"Save 50% On Order"
+
+      },
+
+      {
+
+        "type":"text",
+
+         "id":"button",
+
+         "label":"Button Text",
+
+         "default": "Get Now"
+
+      },
+
+      {
+
+        "type":"url",
+
+        "id": "url",
+
+        "label": "Offer Url"
+
+        
+
+      }
+
+    ],
+
+    "presets": [{
+
+        "name": "Rich text",
+
+        "category": "Text"
+
+    }]
+
+  }
+
+{% endschema %}
+
+
+
+{% stylesheet %}
+
+.mobile-only{
+
+display: none;
+
+}
+
+
+
+@media (max-width: 749px){
+
+.mobile-only{
+
+display: block;
+
+}
+
+}
+
+.discount {
+
+    font-size:22px;
+
+    color:red;
+
+ } 
+
+.btntxt {
+
+   width:150px;
+
+   height:50px;
+
+   background-color:#000;
+
+   color:#fff;
+
+ }
+
+a:link {
+
+  color:#fff;
+
+  
+
+}
+
+{% endstylesheet %}
+
+
+
+{% javascript %}
+
+
+
+        
+
+		var timeLeft = 3600; // 60 minutes in seconds
+
+		var countdown = document.getElementById("countdown");
+
+
+
+		function updateCountdown() {
+
+            var hours = Math.floor(timeLeft / 3600);
+
+			var minutes = Math.floor(timeLeft / 60);
+
+			var seconds = timeLeft % 60;
+
+
+
+			countdown.innerHTML = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+
+
+			if (timeLeft == 0) {
+
+				redirectToURL();
+
+			} else {
+
+				timeLeft--;
+
+				setTimeout(updateCountdown, 1000);
+
+			}
+
+		}
+
+
+
+		function redirectToURL() {
+
+			window.location.href = "{{ offer_url }}" ;
+
+		}
+
+
+
+		updateCountdown();
+
+	
+
+{% endjavascript %}
